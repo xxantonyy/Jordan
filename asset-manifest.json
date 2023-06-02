@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Jordan/static/css/main.a482bd2d.css",
-    "main.js": "/Jordan/static/js/main.36f7bc67.js",
+    "main.js": "/Jordan/static/js/main.ac315d9b.js",
     "index.html": "/Jordan/index.html",
     "main.a482bd2d.css.map": "/Jordan/static/css/main.a482bd2d.css.map",
-    "main.36f7bc67.js.map": "/Jordan/static/js/main.36f7bc67.js.map"
+    "main.ac315d9b.js.map": "/Jordan/static/js/main.ac315d9b.js.map"
   },
   "entrypoints": [
     "static/css/main.a482bd2d.css",
-    "static/js/main.36f7bc67.js"
+    "static/js/main.ac315d9b.js"
   ]
 }
