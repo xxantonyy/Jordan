@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Jordan/1/static/css/main.a482bd2d.css",
+    "main.js": "/Jordan/1/static/js/main.36f7bc67.js",
+    "index.html": "/Jordan/1/index.html",
+    "main.a482bd2d.css.map": "/Jordan/1/static/css/main.a482bd2d.css.map",
+    "main.36f7bc67.js.map": "/Jordan/1/static/js/main.36f7bc67.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a482bd2d.css",
+    "static/js/main.36f7bc67.js"
+  ]
+}
