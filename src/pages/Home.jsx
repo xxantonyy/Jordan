@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Parallax, Navigation} from "swiper";
+import SwiperCore, { Parallax as Parallax2, Navigation} from "swiper";
 import "swiper/css";
 import "swiper/css/parallax";
 import "swiper/css/navigation";
@@ -10,11 +10,11 @@ import { useDispatch } from "react-redux";
 import { setHiet } from "../store/heitSlice";
 import { datasJPG } from "../data/data_chapter";
 import { datasJPG2 } from "../data/data_chapter2";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, MotionValue, useTransform } from "framer-motion";
 import { animateScroll as scroll } from 'react-scroll';
 
 
-SwiperCore.use([Parallax, Navigation]);
+SwiperCore.use([Parallax2, Navigation]);
 
 export function Home() {
    const { id } = useParams();
@@ -63,6 +63,11 @@ export function Home() {
       };
    }
 
+   function useParallax(value = MotionValue, distance) {
+      return useTransform(value, [0, 1], [-200, distance]);
+    }
+
+    const y = useParallax(scrollYProgress, 600);
 
    return <>
 
@@ -121,7 +126,7 @@ export function Home() {
         `}
          </style>
          <div className="">
-            <div className="text-white font-bold flex flex-col md:flex-row text-center text-clip md:text-sm md:gap-24 absolute md:bottom-6 mx-[50%] -translate-x-1/2 items-center bottom-45 whitespace-nowrap gap-10">
+            <div className="text-white font-bold flex flex-col md:flex-row sm:flex-row text-center text-clip md:text-sm md:gap-24 absolute md:bottom-6 mx-[50%] -translate-x-1/2 items-center bottom-45 whitespace-nowrap gap-4">
                <div className="text-sm w-40">
                   <p className="mb-2 md:whitespace-nowrap whitespace-normal">ORIGINAL RELEASE</p>
 
@@ -151,18 +156,22 @@ export function Home() {
             </div>
          </div>
 
-         <div className="parallax text-white flex justify-center items-center md:m-0 mt-[32rem] ">
-            <p className="md:text-6xl text-5xl font-bold font-playfair">{info.name}</p>
-         </div>
 
-         <div className="text-white flex justify-center items-center md:mt-20 mt-6 md:text-9xl text-3xl font-bold font-playfair w-3/4 mx-[50%] -translate-x-1/2">
-           <p>{info.first_part_header}</p>
-         </div>
+         <motion.div style={{ y }} className=" text-white flex justify-center items-center md:pt-0 sm:pt-[20rem] pt-[40rem]">
+               <p className="md:text-6xl text-5xl font-bold font-playfair">{info.name}</p>
+         </motion.div>
+   
 
-         <div className="font-opensans md:text-xl text-gray-400 flex md:gap-20 md:mx-[10rem] md:my-20 text-sm gap-2 mx-5 my-4 md:justify-center">
+         <motion.div style={{ y }} className="text-white flex  md:mt-20 mt-6 md:text-9xl text-3xl font-bold justify-center items-center font-playfair">
+           <div className="text-center ">
+              <p>{info.first_part_header}</p>
+           </div>
+         </motion.div>
+
+         <motion.div style={{ y }} className="font-opensans md:text-xl text-gray-400 flex md:gap-20 md:mx-[10rem] md:my-20 text-sm gap-2 mx-5 my-4 md:justify-center">
             <p className="md:w-[30rem]">{info.first_description}</p>
             <p className="md:w-[30rem]">{info.second_description}</p>
-         </div>
+         </motion.div>
       </motion.div>
 
       <motion.div
@@ -175,6 +184,7 @@ export function Home() {
             visible: { opacity: 1, y: 0 },
          }}
          className="md:pl-[8vw] px-20 pt-40 font-playfair flex md:flex-row flex-col" id="section">
+
          <div className="md:w-[28rem]">
             <div className="text-5xl font-bold ">{info.name_first_chapter}</div>
             <div className="flex">
@@ -189,6 +199,7 @@ export function Home() {
             </div>
             
          </div>
+
          <div className="pt-10 md:w-[60rem] md:grid md:grid-cols-3 my-auto h-[20rem] md:gap-8">
             {pngs.map(item => (
                <div className="ml-12 font-bold">
@@ -205,14 +216,14 @@ export function Home() {
       </motion.div>
 
       <motion.div 
-         initial="hidden"
-         whileInView="visible"
-         viewport={{ once: true, amount: 0.5 }}
-         transition={{ duration: 0.7 }}
-         variants={{
-            hidden: { opacity: 0, y: 90 },
-            visible: { opacity: 1, y: 0 },
-         }} 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7 }}
+          variants={{
+             hidden: { opacity: 0, y: 90 },
+             visible: { opacity: 1, y: 0 },
+          }} 
          className="md:pl-[8vw] sm:pl-[10vw] px-20 pt-60 md:p-40 font-playfair flex md:flex-row flex-col" id="section">
          <div className="md:w-[28rem]">
             <div className="text-5xl font-bold ">{info.name_second_chapter}</div>
@@ -242,7 +253,7 @@ export function Home() {
          </div>
 
       </motion.div>
-         <div className="mt-32 h-[13rem] bg-cover bg-no-repeat bg-black" style={{backgroundImage: `url(https://static.nike.com/a/images/vbnsnewodldr511fex2t/air-jordan-1.jpg)`}}>
+      <div className="mt-32 h-[13rem] bg-cover bg-no-repeat bg-black"   style={{backgroundImage: `url(https://static.nike.com/a/images/vbnsnewodldr511fex2t/air-jordan-1.jpg)`}}>
       </div>
 
       <div className="md:h-[100vh]">
@@ -280,17 +291,17 @@ export function Home() {
                visible: { opacity: 1, y: 0 },
             }}
             className="mt-20 md:ml-20 md:mr-20 md:gap-[2rem] relative  font-playfair ">
-            <div className="flex md:flex-row flex-col justify-center">
+            <div className="flex md:flex-row flex-col justify-center mb-10">
                <div className="md:w-[50rem] md:h-[50vh] md:mb-0 mb-10 relative mx-14">
                   <p className=" absolute text-black rotate-90 top-5 -left-12">{info.brand}</p>
                   <p className=" absolute text-black rotate-90 bottom-5 -left-8 ">{info.brand_year}</p>
-                  <div className="h-[12rem] bg-cover bg-no-repeat md:h-[30rem]" style={{backgroundImage: `url(${info.vault_img1})`}}></div>
+                  <div className="h-[15rem] sm:w-[26rem] bg-cover bg-no-repeat md:h-[40rem] md:w-[50rem]" style={{backgroundImage: `url(${info.vault_img1})`}}></div>
                </div>
 
-               <div className="w-[20rem] md:h-[50vh] relative mx-16">
+               <div className=" md:h-[50vh] relative mx-16">
                   <p className=" absolute text-black rotate-90 top-5 -left-12">{info.brand2}</p>
                   <p className=" absolute text-black rotate-90 bottom-14 -left-8">{info.brand_year2}</p>
-                  <div className="h-[28rem] md:w-[23rem] bg-cover bg-no-repeat mr-10" style={{backgroundImage: `url(${info.vault_img2})`}}></div>
+                  <div className="h-[20rem] sm:w-[20rem] md:h-[35rem] md:w-[23rem] bg-cover bg-no-repeat pr-16 " style={{backgroundImage: `url(${info.vault_img2})`}}></div>
                </div>
             </div>
          </motion.div>
@@ -305,7 +316,7 @@ export function Home() {
             hidden: { opacity: 0, y: 90 },
             visible: { opacity: 1, y: 0 },
          }}
-         className="w-100% mt-28 md:mt-0 md:h-[35rem] bg-cover bg-no-repeat" style={{ backgroundImage: `url(${info.bg_over})` }}>
+         className="w-100% mt-28 md:mt-20 md:h-[35rem] bg-cover bg-no-repeat" style={{ backgroundImage: `url(${info.bg_over})` }}>
          <div className="flex flex-col items-center justify-center h-full">
             <p className="font-bold font-playfair md:text-7xl md:mt-0 mt-10 text-2xl text-white md:w-[50rem] w-3/4">{info.description_over}</p>
                   <p className="mt-10 md:mb-0 mb-10 text-white font-opensans">MJ</p>
