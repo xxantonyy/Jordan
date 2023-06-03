@@ -2,11 +2,13 @@ import { useState,useEffect } from "react"
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { animateScroll as scroll } from 'react-scroll';
+import { useNavigate } from "react-router-dom";
 
 
 export function Header () {
 
    const [headerPoint, setHeaderPoint] = useState(false);
+   const navigate = useNavigate();
 
    const handleHeader = () => {
       setHeaderPoint(!headerPoint) 
@@ -29,6 +31,8 @@ export function Header () {
       };
   
       window.addEventListener('scroll', handleScroll);
+
+      navigate('/1');
   
       return () => {
         window.removeEventListener('scroll', handleScroll);

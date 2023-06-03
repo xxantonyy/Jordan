@@ -12,7 +12,7 @@ import { datasJPG } from "../data/data_chapter";
 import { datasJPG2 } from "../data/data_chapter2";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { animateScroll as scroll } from 'react-scroll';
-import { fetchData } from "../store/heitSlice";
+
 
 SwiperCore.use([Parallax, Navigation]);
 
@@ -62,6 +62,7 @@ export function Home() {
          swiper2.slideTo(+id-1);
       };
    }
+
 
    return <>
 
@@ -150,8 +151,7 @@ export function Home() {
             </div>
          </div>
 
-         <div className="text-white flex justify-center items-center md:m-0 mt-[32rem] ">
-
+         <div className="parallax text-white flex justify-center items-center md:m-0 mt-[32rem] ">
             <p className="md:text-6xl text-5xl font-bold font-playfair">{info.name}</p>
          </div>
 
@@ -165,7 +165,16 @@ export function Home() {
          </div>
       </motion.div>
 
-      <div className="md:pl-[8vw] px-20 pt-40 font-playfair flex md:flex-row flex-col" id="section">
+      <motion.div
+         initial="hidden"
+         whileInView="visible"
+         viewport={{ once: true, amount: 0.5 }}
+         transition={{ duration: 0.7 }}
+         variants={{
+            hidden: { opacity: 0, y: 90 },
+            visible: { opacity: 1, y: 0 },
+         }}
+         className="md:pl-[8vw] px-20 pt-40 font-playfair flex md:flex-row flex-col" id="section">
          <div className="md:w-[28rem]">
             <div className="text-5xl font-bold ">{info.name_first_chapter}</div>
             <div className="flex">
@@ -193,9 +202,18 @@ export function Home() {
             ))}
          </div>
 
-      </div>
+      </motion.div>
 
-      <div className="md:pl-[8vw] sm:pl-[10vw] px-20 pt-60 md:p-40 font-playfair flex md:flex-row flex-col" id="section">
+      <motion.div 
+         initial="hidden"
+         whileInView="visible"
+         viewport={{ once: true, amount: 0.5 }}
+         transition={{ duration: 0.7 }}
+         variants={{
+            hidden: { opacity: 0, y: 90 },
+            visible: { opacity: 1, y: 0 },
+         }} 
+         className="md:pl-[8vw] sm:pl-[10vw] px-20 pt-60 md:p-40 font-playfair flex md:flex-row flex-col" id="section">
          <div className="md:w-[28rem]">
             <div className="text-5xl font-bold ">{info.name_second_chapter}</div>
             <div className="flex">
@@ -223,12 +241,21 @@ export function Home() {
             ))}
          </div>
 
-      </div>
+      </motion.div>
          <div className="mt-32 h-[13rem] bg-cover bg-no-repeat bg-black" style={{backgroundImage: `url(https://static.nike.com/a/images/vbnsnewodldr511fex2t/air-jordan-1.jpg)`}}>
       </div>
 
       <div className="md:h-[100vh]">
-         <div className="md:pl-[15vw] px-20 pt-40 font-playfair flex md:flex-row flex-col">
+         <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.7 }}
+            variants={{
+               hidden: { opacity: 0, y: 90 },
+               visible: { opacity: 1, y: 0 },
+            }} 
+            className="md:pl-[15vw] px-20 pt-40 font-playfair flex md:flex-row flex-col">
             <div className="md:w-[28rem] font-playfair">
                <div className="text-5xl font-bold ">AJ {info.number} VAULT</div>
                <div className="flex">
@@ -241,9 +268,18 @@ export function Home() {
                   </div>
                </div>
             </div>
-         </div>
+         </motion.div>
 
-         <div className="mt-20 md:ml-20 md:mr-20 md:gap-[2rem] relative  font-playfair ">
+         <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.7 }}
+            variants={{
+               hidden: { opacity: 0, y: 90 },
+               visible: { opacity: 1, y: 0 },
+            }}
+            className="mt-20 md:ml-20 md:mr-20 md:gap-[2rem] relative  font-playfair ">
             <div className="flex md:flex-row flex-col justify-center">
                <div className="md:w-[50rem] md:h-[50vh] md:mb-0 mb-10 relative mx-14">
                   <p className=" absolute text-black rotate-90 top-5 -left-12">{info.brand}</p>
@@ -257,15 +293,24 @@ export function Home() {
                   <div className="h-[28rem] md:w-[23rem] bg-cover bg-no-repeat mr-10" style={{backgroundImage: `url(${info.vault_img2})`}}></div>
                </div>
             </div>
-         </div>
+         </motion.div>
       </div>
 
-      <div className="w-100% mt-28 md:mt-0 md:h-[35rem] bg-cover bg-no-repeat" style={{backgroundImage: `url(${info.bg_over})`}}>
-               <div className="flex flex-col items-center justify-center h-full">
-                  <p className="font-bold font-playfair md:text-7xl md:mt-0 mt-10 text-2xl text-white md:w-[50rem] w-3/4">{info.description_over}</p>
+      <motion.div
+         initial="hidden"
+         whileInView="visible"
+         viewport={{ once: true, amount: 0.5 }}
+         transition={{ duration: 0.7 }}
+         variants={{
+            hidden: { opacity: 0, y: 90 },
+            visible: { opacity: 1, y: 0 },
+         }}
+         className="w-100% mt-28 md:mt-0 md:h-[35rem] bg-cover bg-no-repeat" style={{ backgroundImage: `url(${info.bg_over})` }}>
+         <div className="flex flex-col items-center justify-center h-full">
+            <p className="font-bold font-playfair md:text-7xl md:mt-0 mt-10 text-2xl text-white md:w-[50rem] w-3/4">{info.description_over}</p>
                   <p className="mt-10 md:mb-0 mb-10 text-white font-opensans">MJ</p>
                </div>
-      </div>
+      </motion.div>
 
       <div className="mt-20 mb-1 h-[10rem] w-full bg-red text-white font-playfair flex justify-around text-3xl px-10">
          <div className="flex justify-center items-center gap-3">
